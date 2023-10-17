@@ -1,5 +1,7 @@
 Class constructor
 	
+	//https://developer.4d.com/docs/ja/API/WebSocketServerClass/
+	
 Function onConnection($wss : Object; $param : Object) : Object
 	// VerifyAddress メソッドを呼び出して、リモートアドレスからの接続を許可するか判断します
 	If (VerifyAddress($param.request.remoteAddress))

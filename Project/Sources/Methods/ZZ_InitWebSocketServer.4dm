@@ -1,5 +1,7 @@
 //%attributes = {}
 
+// https://developer.4d.com/docs/ja/API/WebSocketServerClass/
+
 var $handler : cs:C1710.WSServerHandler
 $handler:=cs:C1710.WSServerHandler.new()
 
