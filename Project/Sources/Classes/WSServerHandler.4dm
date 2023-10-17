@@ -29,6 +29,11 @@ Function onError($wss : Object; $param : Object)
 	
 Function onMessage($ws : 4D:C1709.WebSocketConnection; $message : Object)
 	// 他のチャットクライアントにメッセージをブロードキャストします
+	CREATE RECORD:C68([送信履歴:1])
+	[送信履歴:1]送信者:2:=String:C10($ws.id)
+	[送信履歴:1]送信内容:3:=$message.data
+	[送信履歴:1]送信日時:4:=String:C10(Current date:C33)+" "+String:C10(Current time:C178)
+	SAVE RECORD:C53([送信履歴:1])
 	This:C1470.broadcast($ws; $message.data)
 	
 Function onOpen($ws : 4D:C1709.WebSocketConnection; $message : Object)

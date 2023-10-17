@@ -2,6 +2,24 @@
 <!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
 <base name="4D View Pro Tips" uuid="AC914DC39C83E24EA457E9721FC95807" collation_locale="en">
 	<schema name="DEFAULT_SCHEMA"/>
+	<table name="送信履歴" uuid="B6BFE3F36491BB49ABC71A28255C6CF6" id="1">
+		<field name="ID" uuid="3FE569D36BB2404CA38627EE388D3A7C" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="送信者" uuid="C25F986F56047B44A92530F70C51C44D" type="10" limiting_length="255" never_null="true" id="2"/>
+		<field name="送信内容" uuid="2DDB18D9D04AB2448F16DEE24743E1CD" type="10" limiting_length="255" never_null="true" id="3"/>
+		<field name="送信日時" uuid="89B4FE249B6446488A5FB1D60A407575" type="10" never_null="true" id="4"/>
+		<primary_key field_name="ID" field_uuid="3FE569D36BB2404CA38627EE388D3A7C"/>
+		<table_extra output_form="フォーム1">
+			<editor_table_info displayable_fields_count="6">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="40" top="40" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<index kind="regular" unique_keys="true" uuid="4871E96EF4AEBA4E8AE970CF25D6E334" type="7">
+		<field_ref uuid="3FE569D36BB2404CA38627EE388D3A7C" name="ID">
+			<table_ref uuid="B6BFE3F36491BB49ABC71A28255C6CF6" name="送信履歴"/>
+		</field_ref>
+	</index>
 	<base_extra>
 		<journal_file journal_file_enabled="true"/>
 	</base_extra>
