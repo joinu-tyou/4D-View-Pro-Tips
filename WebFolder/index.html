@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>4D WebSocket Server</title>
+</head>
+<body>
+  <div class="col">
+    <pre id="messages" style="height:400px;width:300px;border:1px solid;overflow:scroll;"></pre>
+    <input type="text" id="messageBox" placeholder="Type you message here"/>
+    <button id="send" title="Send Message!">Send Message!</button>
+  </div>
+<script>
+  (function(){
+  const sendBtn=document.querySelector('#send');
+  const messages=document.querySelector('#messages');
+  const messageBox=document.querySelector('#messageBox');
+  const urlwss="ws://127.0.0.1:80/";
+  let ws;
+  
+  function showMessage(message){
+    messages.innerHTML +="<br />"+message;
+    messages.scrollTop=messages.scrollHeight;
+  }
+
+  function init(){
+    if (ws){
+      ws.close();
+    }
+    ws = new WebSocket(urlwss);
+    ws.addEventListener('message',function message({data}){
+      console.log(data);
+      showMessage(data);
+    });
+    ws.addEventListener('close',function close(){
+      ws=null;
+    });
+    sendBtn.onclick=function(){
+      if (!ws){
+        showMessage("<span style='color:red'>Error: No websocket connection!</span>");
+        return;
+      }
+      ws.send(messageBox.value);
+      showMessage("<span style='color:green'>"+messageBox.value+"</span>");
+      messageBox.value='';
+    }
+  }
+  
+  init();
+  
+})();
+</script>
+</body>
+</html>
+v
